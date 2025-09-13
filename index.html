@@ -39,8 +39,6 @@
             font-size: 2.2em;
             font-weight: bold;
         }
-
-        /* Formulaire d'accès */
         .lead-form {
             padding: 35px 30px;
             background: var(--mocha-light);
@@ -80,15 +78,12 @@
         .lead-form button:hover {
             background: var(--mocha-dark);
         }
-        /* Message de confirmation */
         .success-message {
             text-align: center;
             color: var(--mocha-dark);
             font-size: 1.1em;
             margin-bottom: 20px;
         }
-
-        /* Simulateur (caché au départ) */
         #simulator {
             display: none;
             padding: 30px;
@@ -216,7 +211,7 @@
             <p>Accède au simulateur en entrant ton prénom et ton adresse email.</p>
         </div>
         <!-- Formulaire lead avant accès au simulateur -->
-        <form class="lead-form" name="lead-access" method="POST" data-netlify="true" id="leadForm">
+        <form class="lead-form" id="leadForm">
             <div>
                 <label for="prenom">Prénom :</label>
                 <input type="text" name="prenom" id="prenom" required>
@@ -313,10 +308,9 @@
                 setTimeout(function() {
                     document.getElementById('successMsg').style.display = 'none';
                     document.getElementById('simulator').style.display = 'block';
+                    calculateResults(); // Calcul initial à l'ouverture
                 }, 1200);
             }
-            // Envoie le formulaire à Netlify (pour récolte des leads)
-            this.submit();
         });
 
         // Simulateur logique
@@ -354,8 +348,6 @@
         document.querySelectorAll('#simulator input, #simulator select').forEach(input => {
             input.addEventListener('input', calculateResults);
         });
-        // Calcul initial (quand le simulateur apparait)
-        // (calculResults sera appelé automatiquement lors des changements)
     </script>
 </body>
 </html>
